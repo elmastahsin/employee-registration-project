@@ -19,7 +19,7 @@
                 <h2>Welcome to Employee Registration Page</h2>
             </div>
             <div class="card-body">
-                <form th:object="${employee}" th:action="@{/employee/insert}">
+                <form th:object="${employee}" th:action="@{/employee/insert}" method="post">
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputfirstname4">First Name</label>
