@@ -20,15 +20,23 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping ("/register")
-    public String createEmployee(Model model){
-        model.addAttribute("employee",new Employee());
+    @GetMapping("/register")
+    public String createEmployee(Model model) {
+        model.addAttribute("employee", new Employee());
         model.addAttribute("stateList", DataGenerator.getAllStates());
         return "employee/employee-create";
     }
-@PostMapping("/insert")
-    public String insertEmployee(@ModelAttribute("employee") Employee employee){
+
+    @PostMapping("/insert")
+    public String insertEmployee(@ModelAttribute("employee") Employee employee) {
         employeeService.saveEmployee(employee);
-        return "employee/employee-list";
+
+        return "redirect:/employee/list"; // with redirect we  are using end point
+    }
+
+    @GetMapping("/list")
+    public String listEmployee(Model model){
+        model.addAttribute("employeeList",employeeService.readAllEmployees());
+        return "employee/employee-list";// without redirect we  are using html file name
     }
 }
